@@ -4,33 +4,33 @@ from file_util import read_line_seperated_data_sets
 class BingoBoard:
 
     def __init__(self, board: list[list[int]]):
-        self.board = board
-        self.width = len(self.board[0])
-        self.height = len(self.board)
-        self.matches = self.init_board()
+        self._board = board
+        self._width = len(self._board[0])
+        self._height = len(self._board)
+        self._matches = self.init_board()
         self._last_number = 0
 
     def mark_matches(self, num: int) -> None:
         self._last_number = num
-        for x in range(self.width):
-            for y in range(self.height):
-                if self.board[x][y] == num:
-                    self.matches[x][y] = True
+        for x in range(self._width):
+            for y in range(self._height):
+                if self._board[x][y] == num:
+                    self._matches[x][y] = True
 
     def won(self) -> bool:
-        return (any(all(row) for row in self.matches) or
-                any(all(col) for col in zip(*self.matches)))
+        return (any(all(row) for row in self._matches) or
+                any(all(col) for col in zip(*self._matches)))
 
     def calc_score(self) -> int:
         score = 0
-        for x in range(self.width):
-            for y in range(self.height):
-                if not self.matches[x][y]:
-                    score += int(self.board[x][y])
+        for x in range(self._width):
+            for y in range(self._height):
+                if not self._matches[x][y]:
+                    score += int(self._board[x][y])
         return score
 
     def init_board(self) -> list[list[bool]]:
-        return [[False] * self.width for _ in range(self.height)]
+        return [[False] * self._width for _ in range(self._height)]
 
     @property
     def last_number(self) -> int:
