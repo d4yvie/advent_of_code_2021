@@ -1,1 +1,3 @@
-# advent_of_code_2021
+# Advent of Code
+
+Solutions for https://adventofcode.com/2021
