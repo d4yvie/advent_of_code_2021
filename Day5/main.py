@@ -1,18 +1,13 @@
 from file_util import read_lines
+from overlap_result import OverlapResult
 
 
-def task1(lines: list[str]) -> int:
-    overlap_map = create_overlap_map(lines)
-    return overlap_map_to_overlaps(overlap_map)
+def task1(lines: list[str]) -> OverlapResult:
+    return OverlapResult(create_overlap_map(lines))
 
 
-def task2(lines: list[str]) -> int:
-    overlap_map = create_overlap_map(lines, True)
-    return overlap_map_to_overlaps(overlap_map)
-
-
-def overlap_map_to_overlaps(overlap_map: dict[tuple[float, float], int], minimal_overlap=2) -> int:
-    return len(list(filter(lambda val: val >= minimal_overlap, overlap_map.values())))
+def task2(lines: list[str]) -> OverlapResult:
+    return OverlapResult(create_overlap_map(lines, True))
 
 
 def create_overlap_map(lines: list[str], include_diagonals=False) -> dict[tuple[float, float], int]:
@@ -62,6 +57,6 @@ def create_coordinate_tuple(coordinate: str) -> tuple[int, int]:
 if __name__ == "__main__":
     lines_read = read_lines()
     result_1 = task1(lines_read)
-    print(f"Result one is: {result_1}")
+    print(f"Result one is: {result_1.overlaps}")
     result_2 = task2(lines_read)
-    print(f"Result two is: {result_2}")
+    print(f"Result two is: {result_2.overlaps}")
