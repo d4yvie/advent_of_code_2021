@@ -5,11 +5,11 @@ class OverlapResult:
         self._overlaps = overlap_map_to_overlaps(overlap_map)
 
     @property
-    def overlaps(self):
+    def overlaps(self) -> int:
         return self._overlaps
 
     @property
-    def overlap_map(self):
+    def overlap_map(self) -> dict[tuple[float, float], int]:
         return self._overlap_map
 
 
