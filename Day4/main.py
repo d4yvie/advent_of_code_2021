@@ -42,7 +42,7 @@ def to_boards_str(board_matrices: list[str]) -> list[list[list[str]]]:
 
 
 def to_boards_num(boards_str: list[list[list[str]]]) -> list[list[list[int]]]:
-    return [[[int(elt) for elt in line] for line in board] for board in boards_str]
+    return [[[int(num) for num in line] for line in board] for board in boards_str]
 
 
 def to_bingo_boards(boards_num: list[[list[int]]]) -> list[BingoBoard]:
