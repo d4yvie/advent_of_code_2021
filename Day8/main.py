@@ -35,14 +35,15 @@ def determine_number(output: str, one: str, four: str, seven: str) -> str:
     output_length = len(output)
     return "1" if output_length == 2 else \
         "7" if output_length == 3 else \
-            "4" if output_length == 4 else \
-                "8" if output_length == 7 else \
-                    "2" if output_length == 5 and len(output & four) == 2 else \
-                        "3" if output_length == 5 and len(output & seven) == 3 else \
-                            "5" if output_length == 5 and len(output & four) == 3 and len(output & one) == 1 else \
-                                "9" if output_length == 6 and len(output & four) == 4 else \
-                                    "6" if output_length == 6 and len(output & four) == 3 and len(output & one) == 1 else \
-                                        "0" if output_length == 6 and len(output & four) == 3 and len(output & one) == 2 else ""
+        "4" if output_length == 4 else \
+        "8" if output_length == 7 else \
+        "2" if output_length == 5 and len(output & four) == 2 else \
+        "3" if output_length == 5 and len(output & seven) == 3 else \
+        "5" if output_length == 5 and len(output & four) == 3 and len(output & one) == 1 else \
+        "9" if output_length == 6 and len(output & four) == 4 else \
+        "6" if output_length == 6 and len(output & four) == 3 and len(output & one) == 1 else \
+        "0" if output_length == 6 and len(output & four) == 3 and len(output & one) == 2 else ""
+
 
 if __name__ == "__main__":
     parsed = parse(read_lines())
