@@ -47,5 +47,6 @@ def determine_number(output: str, one: str, four: str, seven: str) -> str:
 
 if __name__ == "__main__":
     parsed = parse(read_lines())
-    print(task1(parsed))
-    print(task2(parsed))
+    print(f"Digits 1 4 7 8 appear {task1(parsed)} times")
+    print(f"All digits appear {task2(parsed)} times")
+

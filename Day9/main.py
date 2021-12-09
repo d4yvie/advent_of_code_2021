@@ -22,7 +22,5 @@ def task2(numbers: list[list[int]]) -> int:
 
 if __name__ == "__main__":
     parsed = np.array(read_lines_as_int())
-    print(task1(parsed))
-    print(task2(parsed))
-
-
+    print(f"Sum of risk level of all low points: {task1(parsed)}")
+    print(f"Multiplied sizes of three largest basins: {task2(parsed)}")
