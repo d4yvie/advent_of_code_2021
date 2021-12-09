@@ -1,3 +1,11 @@
+from functools import reduce
+
+
+def read_all(file_name="measurements") -> str:
+    with open(file_name) as f:
+        return reduce(lambda a, b: a + b, f, "")
+
+
 def read_lines(file_name="measurements") -> list[str]:
     with open(file_name) as f:
         return [line.strip() for line in f]
@@ -18,3 +26,8 @@ def read_first_line_as_integers(file_name="measurements") -> list[int]:
 def read_line_seperated_data_sets(file_name="measurements") -> list[str]:
     with open(file_name) as f:
         return f.read().rstrip().split('\n\n')
+
+
+def read_lines_as_int(file_name="measurements") -> list[list[int]]:
+    lines = read_lines(file_name)
+    return [[int(char) for char in x] for x in lines]
