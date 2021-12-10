@@ -37,13 +37,13 @@ def task2(lines: list[str]) -> int:
     for line in lines:
         while len(rest_of_line := remove_open_closing_pairs(line)) < len(line):
             line = rest_of_line
-        if len(line) and len(re.sub(r"\(|\[|\{|\<", "", line)) < 1:
+        if len(line) and len(re.sub(r"[(\[{<]", "", line)) < 1:
             scores_of_lines += [reduce(add_to_score_of_line, line[::-1], 0)]
     return sorted(scores_of_lines)[len(scores_of_lines) // 2]
 
 
 def remove_open_closing_pairs(line: str) -> str:
-    return re.sub(r"\(\)|\[\]|\{\}|\<\>", "", line)
+    return re.sub(r"\(\)|\[]|{}|<>", "", line)
 
 
 def add_to_score_of_line(score: int, character: str) -> int:
