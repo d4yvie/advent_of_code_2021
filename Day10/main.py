@@ -28,7 +28,7 @@ def is_closing(character: str) -> bool:
     return character in CLOSING_CHARACTERS
 
 
-def is_fitting_closing(opening_char: str, closing_char: str):
+def is_fitting_closing(opening_char: str, closing_char: str) -> bool:
     return OPENING_TO_CLOSING[opening_char] == closing_char
 
 
