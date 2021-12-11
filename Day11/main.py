@@ -33,7 +33,7 @@ def do_steps(matrix: np.ndarray, number_of_steps=100) -> int:
     return reduce(do_step, range(number_of_steps), (matrix, 0))[1]
 
 
-def first_all_flash(matrix: np.ndarray) -> int:
+def first_time_every_octopus_flashes(matrix: np.ndarray) -> int:
     step = 0
     while True:
         if matrix.sum() == 0:
@@ -45,4 +45,4 @@ def first_all_flash(matrix: np.ndarray) -> int:
 if __name__ == "__main__":
     matrix = read_lines_as_np_matrix()
     print(f"Answer task1: {do_steps(matrix)}")
-    print(f"Answer task2: {first_all_flash(matrix)}")
+    print(f"Answer task2: {first_time_every_octopus_flashes(matrix)}")
