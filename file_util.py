@@ -1,4 +1,5 @@
 from functools import reduce
+import numpy as np
 
 
 def read_all(file_name="measurements") -> str:
@@ -31,3 +32,8 @@ def read_line_seperated_data_sets(file_name="measurements") -> list[str]:
 def read_lines_as_int(file_name="measurements") -> list[list[int]]:
     lines = read_lines(file_name)
     return [[int(char) for char in x] for x in lines]
+
+
+def read_lines_as_np_matrix(file_name="measurements") -> np.ndarray:
+    lines = read_lines(file_name)
+    return np.array([[float(char) for char in line] for line in lines])

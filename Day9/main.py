@@ -5,19 +5,19 @@ from skimage.measure import regionprops
 from skimage.feature import peak_local_max
 
 
-def task1(numbers: list[list[int]]) -> int:
+def task1(numbers: np.ndarray) -> int:
     padded = np.pad(numbers, ((1, 1), (1, 1)), 'constant', constant_values=9)
     # https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_peak_local_max.html
     local_maxima = peak_local_max(-padded)
-    return np.sum(padded[tuple(local_maxima.T)] + 1)
+    return int(np.sum(padded[tuple(local_maxima.T)] + 1))
 
 
-def task2(numbers: list[list[int]]) -> int:
+def task2(numbers: np.ndarray) -> int:
     # https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_watershed.html
     after_watershed_segmentation = watershed(numbers, mask=numbers != 9)
     # https://scikit-image.org/docs/dev/auto_examples/segmentation/plot_regionprops.html
     measured_properties = regionprops(after_watershed_segmentation)
-    return np.prod(sorted([prop.area for prop in measured_properties])[-3:])
+    return int(np.prod(sorted([prop.area for prop in measured_properties])[-3:]))
 
 
 if __name__ == "__main__":
