@@ -6,7 +6,7 @@ def parse_dots(dots: str) -> set[tuple[int, int]]:
     return {tuple(map(int, line.split(","))) for line in dots.split("\n")}
 
 
-def task1(dots: set[tuple[int, int]], folds: str):
+def task1(dots: set[tuple[int, int]], folds: str) -> tuple[set[tuple[int, int]], int]:
     for index, line in enumerate(folds.split("\n")):
         coordinate, fold_number = line.split()[-1].split("=")
         fold_number = int(fold_number)
@@ -22,7 +22,7 @@ def task1(dots: set[tuple[int, int]], folds: str):
     return dots, dots_first_fold
 
 
-def task2(dots: set[tuple[int, int]]):
+def task2(dots: set[tuple[int, int]]) -> None:
     max_x, max_y = zip(*dots)
     for y in range(max(max_y) + 1):
         for x in range(max(max_x) + 1):
