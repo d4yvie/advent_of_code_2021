@@ -1,6 +1,7 @@
 from file_util import read_lines_as_np_matrix
 from typing import Iterator
 from functools import reduce
+from print_aoc import print_task1, print_task2
 import numpy as np
 
 
@@ -44,5 +45,6 @@ def first_time_every_octopus_flashes(matrix: np.ndarray) -> int:
 
 if __name__ == "__main__":
     matrix = read_lines_as_np_matrix()
-    print(f"Answer task1: {do_steps(matrix)}")
-    print(f"Answer task2: {first_time_every_octopus_flashes(matrix)}")
+    print_task1(10, do_steps(matrix))
+    print_task2(10, first_time_every_octopus_flashes(matrix))
+
