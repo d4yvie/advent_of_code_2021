@@ -5,6 +5,7 @@ from file_util import read_lines
 from functools import reduce
 import itertools
 import math
+import json
 
 
 def explode_if_four_pairs(x, pair_counter=4) -> tuple[bool, None, Any, None]:
@@ -68,6 +69,6 @@ def calc_magnitude_of_sum(x: list) -> int:
 
 
 if __name__ == "__main__":
-    lines = list(map(eval, read_lines()))
+    lines = list(map(json.loads, read_lines()))
     print_task1(18, calc_magnitude_of_sum(reduce(add, lines)))
     print_task2(18, max(calc_magnitude_of_sum(add(a, b)) for a, b in itertools.permutations(lines, 2)))
