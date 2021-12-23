@@ -8,7 +8,7 @@ import numpy as np
 EnhanceParameters = tuple[np.array, np.array, np.array]
 
 
-def enhance_n_times(params: EnhanceParameters, times=2):
+def enhance_n_times(params: EnhanceParameters, times=2) -> EnhanceParameters:
     return reduce(enhance, range(times), params)
 
 
