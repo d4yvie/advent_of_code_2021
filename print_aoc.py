@@ -21,7 +21,7 @@ def finish_task2(day: int, answer: int | str, expected: int | str = "") -> int |
 
 
 def check_expected(answer: int | str, expected: int | str = "") -> int | str:
-    if expected:
+    if expected and asserter_active():
         assert answer == expected
     return answer
 
