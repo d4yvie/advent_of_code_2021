@@ -20,7 +20,7 @@ def solve(rooms: Rooms, EXIT=(2, 4, 6, 8)) -> int:
             continue
         visited_states.add(state.id)
         visit_rooms(state, visited_states, states_to_check, ROOM_SIZE, EXIT)
-        visit_hallways(state, visited_states, states_to_check, ROOM_SIZE, EXIT)
+        visit_hallway(state, visited_states, states_to_check, ROOM_SIZE, EXIT)
 
 
 def visit_rooms(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple):
@@ -43,7 +43,7 @@ def visit_rooms(state: OrganizationState, visited_states: set[tuple[tuple, tuple
                     add_possible_state(visited_states, states_to_check, possible_state)
 
 
-def visit_hallways(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple):
+def visit_hallway(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple):
     for i, a in enumerate(state.hallway):
         if a is None \
                 or (i < EXIT[a] and any(u is not None for u in state.hallway[i + 1: EXIT[a]])) \
