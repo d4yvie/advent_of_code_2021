@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from aoc_types import Vector2D
+from aoc_types import VectorX
 
-Rooms = tuple[Vector2D, ...]
+Rooms = tuple[VectorX, ...]
 
 
 @dataclass(frozen=True)
