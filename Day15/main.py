@@ -1,8 +1,9 @@
 from print_aoc import print_task1, print_task2
 from file_util import read_lines
+from aoc_types import Vector2D
 
 
-def dijkstra(map_dict: dict[tuple[int, int], int], end_coords: tuple[int, int]) -> int:
+def dijkstra(map_dict: dict[Vector2D, int], end_coords: Vector2D) -> int:
     unvisited = set(map_dict.keys())
     node_dict = {(0, 0): 0}
     current_node = (0, 0)
@@ -29,7 +30,7 @@ def dijkstra(map_dict: dict[tuple[int, int], int], end_coords: tuple[int, int]) 
     return node_dict[end_coords]
 
 
-def create_map(lines: list[str]) -> tuple[dict[tuple[int, int], int], tuple[int, int]]:
+def create_map(lines: list[str]) -> tuple[dict[Vector2D, int], Vector2D]:
     map_dict = {}
     for y, row in enumerate(lines):
         for x, risk_level in enumerate(row):
@@ -43,7 +44,7 @@ def calc_risk(risk: int, i: int) -> int:
     return 9 if new_risk == 0 else new_risk
 
 
-def extend_map(map_dict, result_map, result_coordinates, extension_func) -> tuple[dict[tuple[int, int], int], dict[tuple[int, int], int]]:
+def extend_map(map_dict, result_map, result_coordinates, extension_func) -> tuple[dict[Vector2D, int], dict[Vector2D, int]]:
     for coordinates, risk in map_dict.items():
         x, y = coordinates
         for i in range(1, 5):
@@ -51,17 +52,17 @@ def extend_map(map_dict, result_map, result_coordinates, extension_func) -> tupl
     return result_map, result_map.copy()
 
 
-def extend_x(x: int, y: int, i, result_map: dict[tuple[int, int], int], risk: int, end_coords: tuple[int, int]):
+def extend_x(x: int, y: int, i, result_map: dict[Vector2D, int], risk: int, end_coords: Vector2D):
     new_x = x + ((end_coords[0] + 1) * i)
     result_map[(new_x, y)] = calc_risk(risk, i)
 
 
-def extend_y(x: int, y: int, i: int, result_map: dict[tuple[int, int], int], risk: int, end_coords: tuple[int, int]):
+def extend_y(x: int, y: int, i: int, result_map: dict[Vector2D, int], risk: int, end_coords: Vector2D):
     new_y = y + ((end_coords[1] + 1) * i)
     result_map[(x, new_y)] = calc_risk(risk, i)
 
 
-def create_full_map(lines: list[str]) -> tuple[dict[tuple[int, int], int], tuple[int, int]]:
+def create_full_map(lines: list[str]) -> tuple[dict[Vector2D, int], Vector2D]:
     tmp_map, end_coords = create_map(lines)
     result_map, tmp_map = extend_map(tmp_map, tmp_map.copy(), end_coords, extend_x)
     result_map, tmp_map = extend_map(tmp_map, result_map, end_coords, extend_y)

@@ -1,9 +1,7 @@
 from file_util import read_lines
 from functools import lru_cache
 from print_aoc import print_task1, print_task2
-
-
-Point2D = tuple[int, int]
+from aoc_types import Vector2D
 
 
 def determinate_player_index(throws: int) -> int:
@@ -25,7 +23,7 @@ def task1(positions: list[int, int]) -> int:
 
 
 @lru_cache(maxsize=None)
-def task2(scores: Point2D, positions: Point2D, turn: int) -> Point2D:
+def task2(scores: Vector2D, positions: Vector2D, turn: int) -> Vector2D:
     if scores[0] >= 21:
         return 1, 0
     if scores[1] >= 21:
