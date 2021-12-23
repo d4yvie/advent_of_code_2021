@@ -90,4 +90,4 @@ if __name__ == '__main__':
     rooms = create_task2_rooms(rooms)
     result = solve(rooms)
     assert result == 47328
-    print_task2(23, solve(rooms))
+    print_task2(23, result)
