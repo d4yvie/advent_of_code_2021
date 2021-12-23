@@ -85,4 +85,4 @@ def create_task2_rooms(rooms: Rooms) -> Rooms:
 if __name__ == '__main__':
     rooms = parse_task1_rooms()
     finish_task1(23, solve(rooms), 13066)
-    finish_task2(23, create_task2_rooms(rooms), 47328)
+    finish_task2(23, solve(create_task2_rooms(rooms)), 47328)
