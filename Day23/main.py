@@ -1,4 +1,4 @@
-from print_aoc import print_task1, print_task2
+from print_aoc import finish_task1, finish_task2
 from file_util import read_all
 from organization_state import OrganizationState, Rooms
 import heapq
@@ -84,10 +84,6 @@ def create_task2_rooms(rooms: Rooms) -> Rooms:
 
 if __name__ == '__main__':
     rooms = parse_task1_rooms()
-    result = solve(rooms)
-    assert result == 13066
-    print_task1(23, result)
+    finish_task1(23, solve(rooms), 13066)
     rooms = create_task2_rooms(rooms)
-    result = solve(rooms)
-    assert result == 47328
-    print_task2(23, result)
+    finish_task2(23, solve(rooms), 47328)

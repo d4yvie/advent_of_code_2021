@@ -8,3 +8,19 @@ def print_task1(day: int, answer: int | str) -> None:
 
 def print_task2(day: int, answer: int | str) -> None:
     print_answer(day, 2, answer)
+
+
+def finish_task1(day: int, answer: int | str, expected: int | str = "") -> int | str:
+    print_task1(day, answer)
+    return check_expected(answer, expected)
+
+
+def finish_task2(day: int, answer: int | str, expected: int | str = "") -> int | str:
+    print_task2(day, answer)
+    return check_expected(answer, expected)
+
+
+def check_expected(answer: int | str, expected: int | str = "") -> int | str:
+    if expected:
+        assert answer == expected
+    return answer
