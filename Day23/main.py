@@ -23,7 +23,7 @@ def solve(rooms: Rooms, EXIT=(2, 4, 6, 8)) -> int:
         visit_hallway(state, visited_states, states_to_check, ROOM_SIZE, EXIT)
 
 
-def visit_rooms(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple):
+def visit_rooms(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple) -> None:
     for room_index, room in enumerate(state.rooms):
         if room and not all(a == room_index for a in room):
             a = room[-1]
@@ -43,7 +43,7 @@ def visit_rooms(state: OrganizationState, visited_states: set[tuple[tuple, tuple
                     add_possible_state(visited_states, states_to_check, possible_state)
 
 
-def visit_hallway(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple):
+def visit_hallway(state: OrganizationState, visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], ROOM_SIZE: int, EXIT: tuple) -> None:
     for i, a in enumerate(state.hallway):
         if a is None \
                 or (i < EXIT[a] and any(u is not None for u in state.hallway[i + 1: EXIT[a]])) \
@@ -59,7 +59,7 @@ def visit_hallway(state: OrganizationState, visited_states: set[tuple[tuple, tup
         add_possible_state(visited_states, states_to_check, possible_state)
 
 
-def add_possible_state(visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], possible_state: OrganizationState):
+def add_possible_state(visited_states: set[tuple[tuple, tuple]], states_to_check: list[OrganizationState], possible_state: OrganizationState) -> None:
     if possible_state.id not in visited_states:
         heapq.heappush(states_to_check, possible_state)
 
@@ -85,5 +85,4 @@ def create_task2_rooms(rooms: Rooms) -> Rooms:
 if __name__ == '__main__':
     rooms = parse_task1_rooms()
     finish_task1(23, solve(rooms), 13066)
-    rooms = create_task2_rooms(rooms)
-    finish_task2(23, solve(rooms), 47328)
+    finish_task2(23, create_task2_rooms(rooms), 47328)
