@@ -24,3 +24,7 @@ def check_expected(answer: int | str, expected: int | str = "") -> int | str:
     if expected:
         assert answer == expected
     return answer
+
+
+def asserter_active() -> bool:
+    return True
