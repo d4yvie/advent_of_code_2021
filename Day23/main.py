@@ -1,6 +1,6 @@
 from print_aoc import print_task1, print_task2
 from file_util import read_all
-from organizationstate import OrganizationState, Rooms
+from organization_state import OrganizationState, Rooms
 import heapq
 
 EXIT = (2, 4, 6, 8)
