@@ -24,14 +24,12 @@ def attempt_to_move_cucumbers_once(right_moving: CucumberList, down_moving: Cucu
 
 def attempt_to_move_right(right_moving: CucumberList, params: StepParams) -> CucumberList:
     x, y, length, to_check = params
-    new_loc = (x, (y + 1) % length)
-    return add_if_not_in_list(right_moving, to_check, (x, y), new_loc)
+    return add_if_not_in_list(right_moving, to_check, (x, y), (x, (y + 1) % length))
 
 
 def attempt_to_move_down(down_moving: CucumberList, params: StepParams) -> CucumberList:
     x, y, length, to_check = params
-    new_loc = ((x + 1) % length, y)
-    return add_if_not_in_list(down_moving, to_check, (x, y), new_loc)
+    return add_if_not_in_list(down_moving, to_check, (x, y), ((x + 1) % length, y))
 
 
 def add_if_not_in_list(cucumber_list: CucumberList, to_check: CucumberList, location_before_step: Vector2D, location_after_step: Vector2D) -> CucumberList:
