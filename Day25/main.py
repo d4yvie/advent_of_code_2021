@@ -41,13 +41,13 @@ def create_reduce_params(cucumber_coordinates: set[Vector2D], length: int, to_ch
     return [(cucumber_coordinate[0], cucumber_coordinate[1], length, to_check) for cucumber_coordinate in cucumber_coordinates]
 
 
-def count_steps_until_not_moving(rights: CucumberList, downs: CucumberList, vertical_length: int, horizontal_length: int) -> int:
-    for c in count(1):
-        new_rights, new_downs = attempt_to_move_cucumbers_once(rights, downs, vertical_length, horizontal_length)
-        if rights == new_rights and downs == new_downs:
-            return c
-        rights = new_rights
-        downs = new_downs
+def count_steps_until_not_moving(right_moving: CucumberList, left_moving: CucumberList, vertical_length: int, horizontal_length: int) -> int:
+    for counted_steps in count(1):
+        right_moving_after_step, down_move_after_step = attempt_to_move_cucumbers_once(right_moving, left_moving, vertical_length, horizontal_length)
+        if right_moving == right_moving_after_step and left_moving == down_move_after_step:
+            return counted_steps
+        right_moving = right_moving_after_step
+        left_moving = down_move_after_step
 
 
 if __name__ == '__main__':
