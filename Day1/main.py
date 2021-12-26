@@ -1,34 +1,12 @@
 from file_util import read_lines
+from print_aoc import finish_task1, finish_task2
 
 
-def task1():
-    f = open("measurements", "r")
-    this_val = 0
-    last_val = 0
-    counted = 0
-    lines = 0
-    for x in f:
-        if int(x) > 0:
-            lines += 1
-            this_val = int(x)
-            if this_val > last_val:
-                counted += 1
-            last_val = int(x)
-    counted -= 1
-    print(f'The result is: {counted}')
-    print(f'The number of lines are: {lines}')
-
-
-def task2():
-    lines = read_lines()
-    counted = 0
-    for third_line in range(3, len(lines)):
-        if lines[third_line] + lines[third_line - 1] + lines[third_line - 2] > lines[third_line - 1] + lines[third_line - 2] + lines[third_line - 3]:
-            counted += 1
-    print(f'The result is: {counted}')
-    print(f'The number of lines are: {len(lines)}')
+def larger_sums(parsed_lines: list[str], window=1) -> int:
+    return sum(b > a for a, b in zip(parsed_lines, parsed_lines[window:]))
 
 
 if __name__ == '__main__':
-    task1()
-    task2()
+    parsed_line = [int(line) for line in read_lines()]
+    finish_task1(1, larger_sums(parsed_line), 1559)
+    finish_task2(1, larger_sums(parsed_line, window=3), 1600)
