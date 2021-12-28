@@ -19,8 +19,8 @@ def to_decimal(num: str) -> int:
     return int(num, 2)
 
 
-def calc_rating(ls: list[str], comparator: Callable[[float, float], bool], number_len=12) -> int:
-    numbers_left = set(ls)
+def calc_rating(lines: list[str], comparator: Callable[[float, float], bool], number_len=12) -> int:
+    numbers_left = set(lines)
     for i in range(number_len):
         amount_of_ones = count_amount_of_ones(numbers_left)
         criteria_bit = int(comparator(len(numbers_left) / 2, amount_of_ones[i]))
