@@ -1,4 +1,6 @@
 from file_util import read_line_seperated_data_sets
+from print_aoc import finish_task1, finish_task2
+import itertools
 
 
 class BingoBoard:
@@ -12,22 +14,19 @@ class BingoBoard:
 
     def mark_matches(self, num: int) -> None:
         self._last_number = num
-        for x in range(self._width):
-            for y in range(self._height):
-                if self._board[x][y] == num:
-                    self._matches[x][y] = True
+        matches_generator = ((x, y) for x, y in self.board_iterator() if self._board[x][y] == num)
+        for x, y in matches_generator:
+            self._matches[x][y] = True
 
     def won(self) -> bool:
         return (any(all(row) for row in self._matches) or
                 any(all(col) for col in zip(*self._matches)))
 
     def calc_score(self) -> int:
-        score = 0
-        for x in range(self._width):
-            for y in range(self._height):
-                if not self._matches[x][y]:
-                    score += int(self._board[x][y])
-        return score
+        return sum((self._board[x][y] for x, y in self.board_iterator() if not self._matches[x][y]))
+
+    def board_iterator(self):
+        return itertools.product(range(self._width), range(self._height))
 
     def init_board(self) -> list[list[bool]]:
         return [[False] * self._width for _ in range(self._height)]
@@ -66,5 +65,5 @@ if __name__ == "__main__":
                 bingo_boards.pop(i)
     first = winning_boards[0]
     last = winning_boards[-1]
-    print(first.calc_score() * first.last_number)
-    print(last.calc_score() * last.last_number)
+    finish_task1(4, first.calc_score() * first.last_number, 38594)
+    finish_task2(4, last.calc_score() * last.last_number, 21184)
